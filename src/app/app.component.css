@@ -1,0 +1,30 @@
+#app-container {
+  max-width: 1188px;
+  margin: 10px auto;
+}
+
+#add-new-ben {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#will-details-container {
+  display: flex;
+}
+#will-details-left {
+  border-right: 1px solid #ddd;
+  padding-right: 20px;
+}
+#will-details-right {
+  display: flex;
+  flex-direction: column;
+}
+#will-details-right {
+  padding-left: 20px;
+  flex: 1;
+}
+
+#will-details-right table {
+  width: 100%;
+}

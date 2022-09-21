@@ -1,0 +1,99 @@
+<div id="app-container">
+  <mat-tab-group>
+    <mat-tab label="Testator">
+      <mat-card style="display: flex; flex-direction: column">
+        <h1>Let's create a will</h1>
+        <mat-form-field>
+          <mat-label
+            >Your social ID (we use this to check your alive status at
+            govement's office)</mat-label
+          >
+          <input [(ngModel)]="will.creatorSocialId" matInput type="text" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Your ETH address</mat-label>
+          <input [(ngModel)]="will.creatorEtherAddress" matInput type="text" />
+        </mat-form-field>
+      </mat-card>
+      <br />
+      <br />
+      <mat-card>
+        <div id="will-details-container">
+          <div id="will-details-left">
+            <h2>Set beneficiary</h2>
+            <div id="add-new-ben">
+              <mat-form-field appearance="standard">
+                <mat-label>Name</mat-label>
+                <input
+                  [disabled]="benLocked"
+                  matInput
+                  type="text"
+                  [(ngModel)]="benName"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="standard">
+                <mat-label>Ether address</mat-label>
+                <input
+                  [disabled]="benLocked"
+                  matInput
+                  type="text"
+                  [(ngModel)]="benAddress"
+                />
+              </mat-form-field>
+            </div>
+
+            <button
+              [disabled]="benLocked"
+              (click)="setBen()"
+              mat-flat-button
+              color="accent"
+            >
+              Set
+            </button>
+            <button
+              [disabled]="!benLocked"
+              (click)="sendToContract()"
+              mat-flat-button
+              color="primary"
+            >
+              Send to contract
+            </button>
+          </div>
+          <div id="loading-right">
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+          </div>
+        </div>
+      </mat-card>
+      <br />
+      <br />
+
+      <mat-card>
+        <mat-form-field appearance="standard">
+          <mat-label>Eth amount</mat-label>
+          <input matInput type="text" [(ngModel)]="depositAmount" />
+        </mat-form-field>
+
+        <button mat-raised-button (click)="depositAssets()" color="warn">
+          Deposit assets
+        </button>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="Beneficiary">
+      <h1>Initiate distribution</h1>
+
+      <mat-form-field>
+        <mat-label>Enter your address</mat-label>
+        <input matInput type="text" [(ngModel)]="requesterAddress" />
+      </mat-form-field>
+
+      <br />
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+      <button mat-raised-button color="warn" (click)="initiateDistribution()">
+        Initiate
+      </button>
+    </mat-tab>
+  </mat-tab-group>
+</div>
